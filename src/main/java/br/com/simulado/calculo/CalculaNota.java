@@ -27,7 +27,6 @@ public interface CalculaNota {
 				.filter(r -> r.getPontuacao() != 0)
 				.filter(r -> r.getQuestao().getNivel().temValor(nivel))
 				.count();
-//TODO: VALIDAR SE O CALCULO DA NOTA ESTA OK
 		return qtd;
 	}
 

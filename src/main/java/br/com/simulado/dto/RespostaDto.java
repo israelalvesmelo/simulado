@@ -6,11 +6,11 @@ import br.com.simulado.modal.Resposta;
 public class RespostaDto {
 	private QuestaoDto questao;
 	private LetraResposta resposta;
-		
+
 	public RespostaDto() {
 	}
-	
-	public RespostaDto (Resposta resposta) {
+
+	public RespostaDto(Resposta resposta) {
 		this(new QuestaoDto(resposta.getQuestao()), resposta.getResposta());
 	}
 
@@ -18,16 +18,19 @@ public class RespostaDto {
 		this.questao = questao;
 		this.resposta = resposta;
 	}
-	
+
 	public QuestaoDto getQuestao() {
 		return questao;
 	}
+
 	public void setQuestao(QuestaoDto questao) {
 		this.questao = questao;
 	}
+
 	public LetraResposta getResposta() {
 		return resposta;
 	}
+
 	public void setResposta(LetraResposta resposta) {
 		this.resposta = resposta;
 	}

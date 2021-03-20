@@ -11,22 +11,24 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import javassist.NotFoundException;
+
 @Entity
-@Table(name="simulado")
-public class Simulado{
+@Table(name = "simulado")
+public class Simulado {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	
+
 	private String nome;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "simulado")
 	private List<Prova> provas;
-	
-	public Simulado(long id,String nome, List<Prova> provas) {
+
+	public Simulado(long id, String nome, List<Prova> provas) {
 		this.id = id;
 		this.nome = nome;
 		this.provas = provas;
 	}
+
 	public Simulado() {
 	}
 
@@ -40,12 +42,9 @@ public class Simulado{
 
 	public Prova retornaProvaPorNome(String nome) throws NotFoundException {
 		Prova prova = new Prova();
-		prova =  this.provas
-				.stream()
-				.filter(p -> p.getNome().equalsIgnoreCase(nome))
-				.findAny()
-				.orElseThrow(() -> new NotFoundException("Prova ["+nome+"] do Simulado ["+this.nome+"] não foi encontrado"));
+		prova = this.provas.stream().filter(p -> p.getNome().equalsIgnoreCase(nome)).findAny().orElseThrow(
+				() -> new NotFoundException("Prova [" + nome + "] do Simulado [" + this.nome + "] não foi encontrado"));
 		return prova;
 	}
-	
+
 }

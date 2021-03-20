@@ -19,7 +19,7 @@ public class NotaProva {
 	private int nota;
 	@ManyToOne
 	private Aluno aluno;
-	
+
 	public NotaProva() {
 	}
 

@@ -25,28 +25,30 @@ public class NotaProvaService {
 	@Autowired
 	private RespostaAlunoService respostaAlunoService;
 
-	public  Optional<NotaProva> calculaNotaProva(Aluno aluno, Prova prova) throws NotFoundException{
-		Optional<List<RespostaAluno>> respostasAluno = respostaAlunoService.buscaRespostaAlunoPeloAlunoProva(aluno, prova);
+	public Optional<NotaProva> calculaNotaProva(Aluno aluno, Prova prova) throws NotFoundException {
+		Optional<List<RespostaAluno>> respostasAluno = respostaAlunoService.buscaRespostaAlunoPeloAlunoProva(aluno,
+				prova);
 		Optional<NotaProva> notaProva = this.buscaNotaProvaPeloAlunoProva(aluno, prova);
-		
-		if(notaProva.isEmpty()) notaProva = Optional.of(new NotaProva());
-		
-		if(respostasAluno.isPresent()) {
+
+		if (notaProva.isEmpty())
+			notaProva = Optional.of(new NotaProva());
+
+		if (respostasAluno.isPresent()) {
 			int valorNotaPerguntaFacil = new PerguntaFacil().calcularNota(respostasAluno.get());
 			int valorNotaPerguntaMedia = new PerguntaMedia().calcularNota(respostasAluno.get());
 			int valorNotaPerguntaDificil = new PerguntaDificil().calcularNota(respostasAluno.get());
 
-			notaProva.get().setNota(valorNotaPerguntaFacil + valorNotaPerguntaMedia + valorNotaPerguntaDificil + 600);	
+			notaProva.get().setNota(valorNotaPerguntaFacil + valorNotaPerguntaMedia + valorNotaPerguntaDificil + 600);
 		} else {
-			notaProva.get().setNota(600);	
+			notaProva.get().setNota(600);
 		}
-	
+
 		notaProva.get().setProva(prova);
 		notaProva.get().setAluno(aluno);
 		notaProvaRepository.save(notaProva.get());
 		return notaProva;
 	}
-	
+
 	private Optional<NotaProva> buscaNotaProvaPeloAlunoProva(Aluno aluno, Prova prova) throws NotFoundException {
 		return notaProvaRepository.findByAlunoAndProva(aluno, prova);
 	}

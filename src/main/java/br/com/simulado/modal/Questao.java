@@ -10,7 +10,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="questao")
+@Table(name = "questao")
 public class Questao {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,10 +21,9 @@ public class Questao {
 	private Nivel nivel;
 	@ManyToOne
 	private Prova prova;
-	
-	
-	
-	public Questao() {}
+
+	public Questao() {
+	}
 
 	public Questao(long id, String descricao, int numero, Nivel nivel) {
 		this.id = id;

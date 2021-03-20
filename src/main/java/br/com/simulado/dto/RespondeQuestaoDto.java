@@ -2,7 +2,7 @@ package br.com.simulado.dto;
 
 public class RespondeQuestaoDto {
 	private String resposta;
-	
+
 	public RespondeQuestaoDto() {
 	}
 

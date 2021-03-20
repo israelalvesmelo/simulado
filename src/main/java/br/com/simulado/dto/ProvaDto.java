@@ -8,7 +8,7 @@ public class ProvaDto {
 	public ProvaDto() {
 	}
 
-	public ProvaDto (Prova prova) {
+	public ProvaDto(Prova prova) {
 		this(prova.getNome());
 	}
 

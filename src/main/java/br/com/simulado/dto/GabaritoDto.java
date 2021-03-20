@@ -15,7 +15,7 @@ public class GabaritoDto {
 	public GabaritoDto() {
 		this.respostas = new ArrayList<>();
 	}
-	
+
 	public GabaritoDto(Gabarito gabarito) {
 		this();
 		gabarito.getRespostas().forEach(r -> this.respostas.add(new RespostaDto(r)));
@@ -32,5 +32,5 @@ public class GabaritoDto {
 	public void setRespostas(List<RespostaDto> respostas) {
 		this.respostas = respostas;
 	}
-		
+
 }

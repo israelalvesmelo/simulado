@@ -5,20 +5,19 @@ import java.util.Arrays;
 import java.util.List;
 
 public enum LetraResposta {
-	A("a"),
-	B("b"),
-	C("c"),
+	A("a"), 
+	B("b"), 
+	C("c"), 
 	D("d");
-	
+
 	private String nome;
 	private static List<LetraResposta> letras;
 
 	static {
-	letras = new ArrayList<>();
-	letras.addAll(Arrays.asList(A, B, C, D));
-}
-	
-	
+		letras = new ArrayList<>();
+		letras.addAll(Arrays.asList(A, B, C, D));
+	}
+
 	public String getNome() {
 		return nome;
 	}
@@ -30,11 +29,9 @@ public enum LetraResposta {
 	LetraResposta(String nome) {
 		this.nome = nome;
 	}
-	
+
 	public static LetraResposta retornaLetraRespostaPeloNome(String nome) {
-		return letras.stream()
-				.filter(l -> l.getNome().equalsIgnoreCase(nome))
-				.findAny()
-				.orElseThrow(() -> new IllegalArgumentException("Resposta ["+nome+"] não encontrada"));
+		return letras.stream().filter(l -> l.getNome().equalsIgnoreCase(nome)).findAny()
+				.orElseThrow(() -> new IllegalArgumentException("Resposta [" + nome + "] não encontrada"));
 	}
 }

@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import br.com.simulado.modal.Simulado;
 
 @Repository
-public interface SimuladoRepository extends CrudRepository<Simulado, Long>{
+public interface SimuladoRepository extends CrudRepository<Simulado, Long> {
 	Simulado findByNome(String nome);
 }

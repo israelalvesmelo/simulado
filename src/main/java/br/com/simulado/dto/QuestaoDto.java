@@ -6,15 +6,14 @@ public class QuestaoDto {
 	private int numero;
 	private String descricao;
 	private String nivel;
-	
-	
+
 	public QuestaoDto() {
 	}
-	
+
 	public QuestaoDto(Questao questao) {
 		this(questao.getDescricao(), questao.getNumero(), questao.getNivel().getNome());
 	}
-	
+
 	public QuestaoDto(String descricao, int numero, String nivel) {
 		this.descricao = descricao;
 		this.numero = numero;
@@ -44,5 +43,5 @@ public class QuestaoDto {
 	public void setNivel(String nivel) {
 		this.nivel = nivel;
 	}
-	
+
 }

@@ -52,14 +52,12 @@ public class Prova {
 	public Gabarito getGabarito() {
 		return gabarito;
 	}
-	
+
 	public Questao retornaQuestaoPorNumero(int numero) throws NotFoundException {
 		Questao questao = new Questao();
-		questao =  this.questoes
-				.stream()
-				.filter(q -> q.getNumero() == numero)
-				.findAny()
-				.orElseThrow(() -> new NotFoundException("Questão ["+numero+"] da Prova ["+this.nome+"] não foi encontrado"));
+		questao = this.questoes.stream().filter(q -> q.getNumero() == numero).findAny()
+				.orElseThrow(() -> new NotFoundException(
+						"Questão [" + numero + "] da Prova [" + this.nome + "] não foi encontrado"));
 		return questao;
 	}
 }

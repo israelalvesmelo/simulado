@@ -10,16 +10,16 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 import javassist.NotFoundException;
 
 @ControllerAdvice
-public class SimuladorExceptionHandler  extends ResponseEntityExceptionHandler{
+public class SimuladorExceptionHandler extends ResponseEntityExceptionHandler {
 
-	@ExceptionHandler(value= {NotFoundException.class, IllegalArgumentException.class})
-	public ResponseEntity<Object> handleNotFoundException(Exception e, WebRequest request){
+	@ExceptionHandler(value = { NotFoundException.class, IllegalArgumentException.class })
+	public ResponseEntity<Object> handleNotFoundException(Exception e, WebRequest request) {
 		MensagemErro mensagemErro = new MensagemErro(e.getMessage());
-		return new ResponseEntity<>(mensagemErro,HttpStatus.NOT_FOUND);
+		return new ResponseEntity<>(mensagemErro, HttpStatus.NOT_FOUND);
 	}
-	
-//	@ExceptionHandler(value= {NullPointerException.class})
-//	public ResponseEntity<Object> handleNullPointerException(NullPointerException e, WebRequest request){
-//		return new ResponseEntity<>(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
-//	}
+
+	@ExceptionHandler(value= {NullPointerException.class})
+	public ResponseEntity<Object> handleNullPointerException(Exception e, WebRequest request){
+		return new ResponseEntity<>(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
+	}
 }

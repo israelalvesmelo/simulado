@@ -1,13 +1,7 @@
 package br.com.simulado.dto;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
-import java.util.Optional;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class RankingDto {
 	private List<AlunoDto> alunos;
@@ -25,56 +19,63 @@ public class RankingDto {
 	}
 
 	public void addAlunoDto(AlunoDto alunoDto) {
-		if(this.alunos.isEmpty()) {
+		if (alunoDto == null) {
+			return;
+		}
+
+		if (this.alunos.isEmpty()) {
 			alunoDto.setRanking(1);
 			this.alunos.add(alunoDto);
 			return;
 		}
+
 		List<AlunoDto> aux = this.alunos;
 
-		for (int i = aux.size()-1; i >= 0; i--) {
+		for (int i = aux.size() - 1; i >= 0; i--) {
 			AlunoDto alunoAux = aux.get(i);
 			if (alunoDto.getNota() > alunoAux.getNota()) {
-				this.alunos.remove(alunoDto);
-				alunoDto.setRanking(alunoAux.getRanking());
-				this.alunos.add(alunoDto);
-				this.alunos.remove(alunoAux);
-				alunoAux.setRanking(alunoAux.getRanking() + 1);
-				this.alunos.add(alunoAux);
+				substituiPosicao(alunoDto, alunoAux);
 			} else if (alunoDto.getNota() == alunoAux.getNota()) {
-				this.alunos.remove(alunoAux);
-				this.alunos.remove(alunoDto);
-				alunoDto.setRanking(alunoAux.getRanking());
-				this.alunos.add(alunoAux);
-
-				this.alunos.add(alunoDto);
+				empatePosicao(alunoDto, alunoAux);
 			} else if (alunoDto.getNota() < alunoAux.getNota() && !temValorMenor(alunoAux.getNota())) {
-				// Procurar se tem valor menor, pegar e add o ranking agregando valor
-				alunoDto.setRanking(alunoAux.getRanking() + 1);
-				this.alunos.add(alunoDto);
+				menorPosicao(alunoDto, alunoAux);
 			}
-	
+
 		}
+
 		this.alunos.sort((a1, a2) -> a2.getNota().compareTo(a1.getNota()));
+		verificaSomenteTopCincoPosicoes();
+	}
+
+	private void verificaSomenteTopCincoPosicoes() {
 		if (this.alunos.size() > 5) {
 			this.alunos.remove(5);
 		}
-
 	}
 
-	private boolean temValorMaior(Integer nota) {
-		return this.alunos.stream().anyMatch(a -> (a.getNota() > nota));
+	private void menorPosicao(AlunoDto alunoDto, AlunoDto alunoAux) {
+		alunoDto.setRanking(alunoAux.getRanking() + 1);
+		this.alunos.add(alunoDto);
 	}
 
-	private Optional<AlunoDto> temValoIgual(Integer nota) {
-		return this.alunos.stream().filter(a -> (a.getNota() == nota)).findFirst();
+	private void empatePosicao(AlunoDto alunoDto, AlunoDto alunoAux) {
+		this.alunos.remove(alunoAux);
+		this.alunos.remove(alunoDto);
+		alunoDto.setRanking(alunoAux.getRanking());
+		this.alunos.add(alunoAux);
+		this.alunos.add(alunoDto);
+	}
+
+	private void substituiPosicao(AlunoDto alunoDto, AlunoDto alunoAux) {
+		this.alunos.remove(alunoDto);
+		alunoDto.setRanking(alunoAux.getRanking());
+		this.alunos.add(alunoDto);
+		this.alunos.remove(alunoAux);
+		menorPosicao(alunoAux, alunoAux);
 	}
 
 	private boolean temValorMenor(Integer nota) {
 		return this.alunos.stream().anyMatch(a -> (a.getNota() < nota));
 	}
-	
-	private void diminuiClassificacao(String cpf) {
-		this.alunos.stream().filter(a -> (a.getCpf().equals(cpf))).forEach(a -> a.setRanking(a.getRanking() + 1));
-	}
+
 }

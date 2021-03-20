@@ -56,12 +56,12 @@ public class SimuladoService {
 			alunoDto.setNome(aluno.getNome());
 			for (Prova prova : provas) {
 				Optional<NotaProva> notaProva = this.notaProvaService.calculaNotaProva(aluno, prova);
-						
+
 				alunoDto.setNota(notaProva.get().getNota());
 			}
 			ranking.addAlunoDto(alunoDto);
 		}
-		
+
 		return ranking;
 	}
 

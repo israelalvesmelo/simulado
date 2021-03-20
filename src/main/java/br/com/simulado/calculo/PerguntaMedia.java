@@ -9,6 +9,10 @@ public class PerguntaMedia implements CalculaNota {
 
 	@Override
 	public int calcularNota(List<RespostaAluno> respostasAluno) {
+		if (respostasAluno == null || respostasAluno.isEmpty()) {
+			return 0;
+		}
+
 		int soma = this.getPontuacao(respostasAluno, Nivel.MEDIA.getNome());
 		int qtd = this.getQuantidadeDePereguntasCertas(respostasAluno, Nivel.MEDIA.getNome());
 

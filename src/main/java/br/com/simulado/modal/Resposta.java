@@ -22,8 +22,9 @@ public class Resposta {
 	private LetraResposta resposta;
 	@ManyToOne
 	private Gabarito gabarito;
-	
-	public Resposta() {}
+
+	public Resposta() {
+	}
 
 	public Resposta(long id, Questao questao, LetraResposta resposta, Gabarito gabarito) {
 		this.id = id;

@@ -66,8 +66,8 @@ public class RespostaAlunoService {
 				.getResposta();
 		return valorRespostaGabarito.getNome().equals(resposta.getNome()) ? true : false;
 	}
-	
+
 	public Optional<List<RespostaAluno>> buscaRespostaAlunoPeloAlunoProva(Aluno aluno, Prova prova) {
-		 return respostaAlunoRepository.findByAlunoAndProva(aluno, prova);
+		return respostaAlunoRepository.findByAlunoAndProva(aluno, prova);
 	}
 }

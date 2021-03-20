@@ -14,18 +14,18 @@ import javassist.NotFoundException;
 public class AlunoService {
 	@Autowired
 	private AlunoRepository alunoRepository;
-	
+
 	public Aluno buscaAlunoPorCpfESimulado(String cpf, Simulado simulado) throws NotFoundException {
 		Aluno aluno = alunoRepository.findByCpfAndSimulados(cpf, simulado)
-		.orElseThrow(() -> new NotFoundException("Aluno não foi encontrado no simulado"));
-		
+				.orElseThrow(() -> new NotFoundException("Aluno não foi encontrado no simulado"));
+
 		return aluno;
 	}
-	
+
 	public List<Aluno> buscaAlunoPorSimulado(Simulado simulado) throws NotFoundException {
 		List<Aluno> aluno = alunoRepository.findBySimulados(simulado)
 				.orElseThrow(() -> new NotFoundException("Aluno não foi encontrado no simulado"));
-				
-				return aluno;
+
+		return aluno;
 	}
 }

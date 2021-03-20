@@ -1,8 +1,7 @@
 package br.com.simulado.dto;
 
 public class ResultadoQuestaoDto {
-private String resposta;
-	
+	private String resposta;
 	private String status;
 
 	public ResultadoQuestaoDto() {

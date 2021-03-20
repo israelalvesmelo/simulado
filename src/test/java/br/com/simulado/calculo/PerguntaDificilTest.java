@@ -16,8 +16,8 @@ import br.com.simulado.modal.Prova;
 import br.com.simulado.modal.Questao;
 import br.com.simulado.modal.RespostaAluno;
 
-public class PerguntaFacilTest {
-	private CalculaNota calculaNota = new PerguntaFacil();
+public class PerguntaDificilTest {
+	private CalculaNota calculaNota = new PerguntaDificil();
 
 	@Test
 	public void dadoRespostasDoAlunoComNiveisDiferentes_QuandoCalcularNova_RetornarTotalDeNotasDePerguntasFaceis() {
@@ -25,7 +25,7 @@ public class PerguntaFacilTest {
 		Questao questao2 = mock(Questao.class);
 
 		when(questao1.getNivel()).thenReturn(Nivel.FACIL);
-		when(questao2.getNivel()).thenReturn(Nivel.MEDIA);
+		when(questao2.getNivel()).thenReturn(Nivel.DIFICIL);
 
 		RespostaAluno respostaAluno1 = mock(RespostaAluno.class);
 		when(respostaAluno1.getAluno()).thenReturn(new Aluno());
@@ -45,50 +45,17 @@ public class PerguntaFacilTest {
 		when(respostaAluno3.getAluno()).thenReturn(new Aluno());
 		when(respostaAluno3.getProva()).thenReturn(new Prova());
 		when(respostaAluno3.getResposta()).thenReturn(LetraResposta.D);
-		when(respostaAluno3.getPontuacao()).thenReturn(Nivel.MEDIA.getPontuacao());
+		when(respostaAluno3.getPontuacao()).thenReturn(Nivel.DIFICIL.getPontuacao());
 		when(respostaAluno3.getQuestao()).thenReturn(questao2);
 
 		List<RespostaAluno> respostasAlunos = java.util.Arrays.asList(respostaAluno1, respostaAluno2, respostaAluno3);
 
 		int pontuacao = calculaNota.calcularNota(respostasAlunos);
-		assertEquals(15, pontuacao);
+		assertEquals(8, pontuacao);
 	}
 
 	@Test
-	public void dadoRespostasDoAlunoFaceis_QuandoCalcularNova_RetornarTotalDeNotasDePerguntasFaceis() {
-		Questao questao = mock(Questao.class);
-
-		when(questao.getNivel()).thenReturn(Nivel.FACIL);
-
-		RespostaAluno respostaAluno1 = mock(RespostaAluno.class);
-		when(respostaAluno1.getAluno()).thenReturn(new Aluno());
-		when(respostaAluno1.getProva()).thenReturn(new Prova());
-		when(respostaAluno1.getResposta()).thenReturn(LetraResposta.A);
-		when(respostaAluno1.getPontuacao()).thenReturn(Nivel.FACIL.getPontuacao());
-		when(respostaAluno1.getQuestao()).thenReturn(questao);
-
-		RespostaAluno respostaAluno2 = mock(RespostaAluno.class);
-		when(respostaAluno2.getAluno()).thenReturn(new Aluno());
-		when(respostaAluno2.getProva()).thenReturn(new Prova());
-		when(respostaAluno2.getResposta()).thenReturn(LetraResposta.C);
-		when(respostaAluno2.getPontuacao()).thenReturn(Nivel.FACIL.getPontuacao());
-		when(respostaAluno2.getQuestao()).thenReturn(questao);
-
-		RespostaAluno respostaAluno3 = mock(RespostaAluno.class);
-		when(respostaAluno3.getAluno()).thenReturn(new Aluno());
-		when(respostaAluno3.getProva()).thenReturn(new Prova());
-		when(respostaAluno3.getResposta()).thenReturn(LetraResposta.D);
-		when(respostaAluno3.getPontuacao()).thenReturn(Nivel.FACIL.getPontuacao());
-		when(respostaAluno3.getQuestao()).thenReturn(questao);
-
-		List<RespostaAluno> respostasAlunos = java.util.Arrays.asList(respostaAluno1, respostaAluno2, respostaAluno3);
-
-		int pontuacao = calculaNota.calcularNota(respostasAlunos);
-		assertEquals(135, pontuacao);
-	}
-
-	@Test
-	public void dadoRespostasDoAlunoDificeis_QuandoCalcularNova_RetornarTotalDeNotasDePerguntasFaceisComValorZero() {
+	public void dadoRespostasDoAlunoDificeis_QuandoCalcularNova_RetornarTotalDeNotasDePerguntasDificeis() {
 		Questao questao = mock(Questao.class);
 
 		when(questao.getNivel()).thenReturn(Nivel.DIFICIL);
@@ -112,6 +79,39 @@ public class PerguntaFacilTest {
 		when(respostaAluno3.getProva()).thenReturn(new Prova());
 		when(respostaAluno3.getResposta()).thenReturn(LetraResposta.D);
 		when(respostaAluno3.getPontuacao()).thenReturn(Nivel.DIFICIL.getPontuacao());
+		when(respostaAluno3.getQuestao()).thenReturn(questao);
+
+		List<RespostaAluno> respostasAlunos = java.util.Arrays.asList(respostaAluno1, respostaAluno2, respostaAluno3);
+
+		int pontuacao = calculaNota.calcularNota(respostasAlunos);
+		assertEquals(72, pontuacao);
+	}
+
+	@Test
+	public void dadoRespostasDoAlunoFaceis_QuandoCalcularNova_RetornarTotalDeNotasDePerguntasDificesComValorZero() {
+		Questao questao = mock(Questao.class);
+
+		when(questao.getNivel()).thenReturn(Nivel.FACIL);
+
+		RespostaAluno respostaAluno1 = mock(RespostaAluno.class);
+		when(respostaAluno1.getAluno()).thenReturn(new Aluno());
+		when(respostaAluno1.getProva()).thenReturn(new Prova());
+		when(respostaAluno1.getResposta()).thenReturn(LetraResposta.A);
+		when(respostaAluno1.getPontuacao()).thenReturn(Nivel.FACIL.getPontuacao());
+		when(respostaAluno1.getQuestao()).thenReturn(questao);
+
+		RespostaAluno respostaAluno2 = mock(RespostaAluno.class);
+		when(respostaAluno2.getAluno()).thenReturn(new Aluno());
+		when(respostaAluno2.getProva()).thenReturn(new Prova());
+		when(respostaAluno2.getResposta()).thenReturn(LetraResposta.C);
+		when(respostaAluno2.getPontuacao()).thenReturn(Nivel.FACIL.getPontuacao());
+		when(respostaAluno2.getQuestao()).thenReturn(questao);
+
+		RespostaAluno respostaAluno3 = mock(RespostaAluno.class);
+		when(respostaAluno3.getAluno()).thenReturn(new Aluno());
+		when(respostaAluno3.getProva()).thenReturn(new Prova());
+		when(respostaAluno3.getResposta()).thenReturn(LetraResposta.D);
+		when(respostaAluno3.getPontuacao()).thenReturn(Nivel.FACIL.getPontuacao());
 		when(respostaAluno3.getQuestao()).thenReturn(questao);
 
 		List<RespostaAluno> respostasAlunos = java.util.Arrays.asList(respostaAluno1, respostaAluno2, respostaAluno3);

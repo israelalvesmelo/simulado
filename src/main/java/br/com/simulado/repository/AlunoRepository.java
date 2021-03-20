@@ -10,7 +10,7 @@ import br.com.simulado.modal.Aluno;
 import br.com.simulado.modal.Simulado;
 
 @Repository
-public interface AlunoRepository extends CrudRepository<Aluno, Long>{
+public interface AlunoRepository extends CrudRepository<Aluno, Long> {
 	Optional<Aluno> findByCpfAndSimulados(String cpf, Simulado simulado);
 
 	Optional<List<Aluno>> findBySimulados(Simulado simulado);
