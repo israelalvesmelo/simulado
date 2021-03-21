@@ -30,7 +30,7 @@ public class AlunoDto {
 		this.nome = nome;
 	}
 
-	public Integer getNota() {
+	public int getNota() {
 		return nota;
 	}
 

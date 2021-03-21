@@ -43,7 +43,7 @@ public class RankingDto {
 
 		}
 
-		this.alunos.sort((a1, a2) -> a2.getNota().compareTo(a1.getNota()));
+		this.alunos.sort((a1, a2) -> new Integer(a2.getNota()).compareTo(a1.getNota()));
 		verificaSomenteTopCincoPosicoes();
 	}
 

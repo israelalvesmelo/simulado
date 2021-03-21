@@ -34,7 +34,7 @@ public class NotaProvaService {
 			notaProva = Optional.of(new NotaProva());
 		}
 
-		if (respostasAluno.isPresent()) {
+		if (respostasAluno.isPresent() && !respostasAluno.get().isEmpty()) {
 			int valorNotaPerguntaFacil = new PerguntaFacil().calcularNota(respostasAluno.get());
 			int valorNotaPerguntaMedia = new PerguntaMedia().calcularNota(respostasAluno.get());
 			int valorNotaPerguntaDificil = new PerguntaDificil().calcularNota(respostasAluno.get());
