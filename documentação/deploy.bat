@@ -12,6 +12,6 @@ call java -jar simulado-0.0.1-SNAPSHOT.jar
 
 echo **************************************
 echo *                                    *
-echo * Aplicacao inicializada *
+echo * Aplicacao encerrada *
 echo *                                    *
 echo **************************************
