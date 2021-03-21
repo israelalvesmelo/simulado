@@ -9,22 +9,30 @@ import br.com.simulado.modal.Aluno;
 import br.com.simulado.modal.Simulado;
 import br.com.simulado.repository.AlunoRepository;
 import javassist.NotFoundException;
+import jdk.internal.joptsimple.internal.Strings;
 
 @Service
 public class AlunoService {
+	private static final String ALUNO_NAO_ENCONTRADO = "Aluno não foi encontrado no simulado";
 	@Autowired
 	private AlunoRepository alunoRepository;
 
 	public Aluno buscaAlunoPorCpfESimulado(String cpf, Simulado simulado) throws NotFoundException {
+		if ((cpf == null || cpf.isEmpty()) || simulado == null) {
+			throw new IllegalArgumentException("CPF e simulado do aluno deve ser informado");
+		}
 		Aluno aluno = alunoRepository.findByCpfAndSimulados(cpf, simulado)
-				.orElseThrow(() -> new NotFoundException("Aluno não foi encontrado no simulado"));
+				.orElseThrow(() -> new NotFoundException(ALUNO_NAO_ENCONTRADO));
 
 		return aluno;
 	}
 
 	public List<Aluno> buscaAlunoPorSimulado(Simulado simulado) throws NotFoundException {
+		if (simulado == null) {
+			throw new IllegalArgumentException("Simulado do aluno deve ser informado");
+		}
 		List<Aluno> aluno = alunoRepository.findBySimulados(simulado)
-				.orElseThrow(() -> new NotFoundException("Aluno não foi encontrado no simulado"));
+				.orElseThrow(() -> new NotFoundException(ALUNO_NAO_ENCONTRADO));
 
 		return aluno;
 	}

@@ -5,10 +5,10 @@ import java.util.Arrays;
 import java.util.List;
 
 public enum LetraResposta {
-	A("a"), 
-	B("b"), 
-	C("c"), 
-	D("d");
+	A("A"), 
+	B("B"), 
+	C("C"), 
+	D("D");
 
 	private String nome;
 	private static List<LetraResposta> letras;

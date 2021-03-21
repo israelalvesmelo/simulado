@@ -78,7 +78,7 @@ public class RankingDtoTest {
 		assertEquals(1, rankingDto.getAlunos().get(4).getRanking());
 		assertEquals("Katia Alves", rankingDto.getAlunos().get(4).getNome());
 	}
-	
+
 	@Test
 	public void dadoUmAlunoComValorNull_QuandoCalculaRanking_RetornarListaDeRankingVazia() {
 		RankingDto rankingDto = new RankingDto();
@@ -89,7 +89,7 @@ public class RankingDtoTest {
 		assertEquals(0, rankingDto.getAlunos().size());
 
 	}
-	
+
 	@Test
 	public void dadoUmUnicoAluno_QuandoCalculaRanking_RetornarAlunoEmPrimeiroLugar() {
 		RankingDto rankingDto = new RankingDto();
@@ -98,10 +98,9 @@ public class RankingDtoTest {
 		rankingDto.addAlunoDto(a1);
 
 		assertEquals(1, rankingDto.getAlunos().size());
-		
+
 		assertEquals("Henrique Melo", rankingDto.getAlunos().get(0).getNome());
 		assertEquals(1, rankingDto.getAlunos().get(0).getRanking());
 
-	
 	}
 }

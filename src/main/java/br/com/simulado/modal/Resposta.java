@@ -26,8 +26,7 @@ public class Resposta {
 	public Resposta() {
 	}
 
-	public Resposta(long id, Questao questao, LetraResposta resposta, Gabarito gabarito) {
-		this.id = id;
+	public Resposta(Questao questao, LetraResposta resposta, Gabarito gabarito) {
 		this.questao = questao;
 		this.resposta = resposta;
 		this.gabarito = gabarito;

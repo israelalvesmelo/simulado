@@ -25,6 +25,10 @@ public class Gabarito {
 	public Gabarito() {
 	}
 
+	public Gabarito(List<Resposta> respostas) {
+		this.respostas = respostas;
+	}
+
 	public List<Resposta> getRespostas() {
 		return respostas;
 	}

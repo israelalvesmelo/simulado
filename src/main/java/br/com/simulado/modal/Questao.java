@@ -25,8 +25,7 @@ public class Questao {
 	public Questao() {
 	}
 
-	public Questao(long id, String descricao, int numero, Nivel nivel) {
-		this.id = id;
+	public Questao(String descricao, int numero, Nivel nivel) {
 		this.descricao = descricao;
 		this.numero = numero;
 		this.nivel = nivel;

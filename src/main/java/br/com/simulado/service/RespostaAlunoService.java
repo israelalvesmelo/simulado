@@ -29,9 +29,13 @@ public class RespostaAlunoService {
 	@Autowired
 	private AlunoService alunoService;
 
-	public ResultadoQuestaoDto respondeQuestao(String nomeSimulado, String nomeProva, int numeroQuestao, String cpf,
+	public ResultadoQuestaoDto salvaRespostaAluno(String nomeSimulado, String nomeProva, int numeroQuestao, String cpf,
 			RespondeQuestaoDto respostaDto) throws NotFoundException {
 
+		if(respostaDto.getResposta() == null) {
+			throw new IllegalArgumentException("Resposta deve ser informada");
+		}
+		
 		Simulado simulado = this.simuladoService.buscaSimuladoPeloNome(nomeSimulado);
 		Aluno aluno = alunoService.buscaAlunoPorCpfESimulado(cpf, simulado);
 		Prova prova = simulado.retornaProvaPorNome(nomeProva);
@@ -46,14 +50,14 @@ public class RespostaAlunoService {
 		respostaAluno.setResposta(letraResposta);
 
 		ResultadoQuestaoDto resultadoQuestaoDto = new ResultadoQuestaoDto();
-		resultadoQuestaoDto.setResposta(respostaDto.getResposta());
+		resultadoQuestaoDto.setResposta(letraResposta.getNome());
 
 		if (this.acertouResposta(letraResposta, questao, prova.getGabarito())) {
 			respostaAluno.setPontuacao(questao.getNivel().getPontuacao());
 			resultadoQuestaoDto.setStatus("Resposta correta");
 		} else {
 			respostaAluno.setPontuacao(0);
-			resultadoQuestaoDto.setStatus("Resposta errada");
+			resultadoQuestaoDto.setStatus("Resposta incorreta");
 		}
 
 		respostaAlunoRepository.save(respostaAluno);

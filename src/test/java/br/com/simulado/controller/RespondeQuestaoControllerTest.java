@@ -41,7 +41,7 @@ public class RespondeQuestaoControllerTest {
 		RespondeQuestaoDto respondeQuestaoDto = new RespondeQuestaoDto();
 		respondeQuestaoDto.setResposta("A");
 
-		when(respondeService.respondeQuestao(SIMULADO, PROVA, Integer.valueOf(NUMERO_QUESTAO), CPF, respondeQuestaoDto))
+		when(respondeService.salvaRespostaAluno(SIMULADO, PROVA, Integer.valueOf(NUMERO_QUESTAO), CPF, respondeQuestaoDto))
 				.thenReturn(resultadoQuestaoDto);
 
 		mockMvc.perform(MockMvcRequestBuilders.post("/{simulado}/{prova}/{questao}", SIMULADO, PROVA, NUMERO_QUESTAO)

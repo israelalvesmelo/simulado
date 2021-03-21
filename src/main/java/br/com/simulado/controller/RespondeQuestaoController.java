@@ -27,7 +27,7 @@ public class RespondeQuestaoController {
 									  @RequestParam("cpf") String cpf,
 									  @RequestBody RespondeQuestaoDto respondeQuestaoDto) throws NotFoundException {
 	
-		ResultadoQuestaoDto resultado = respondeService.respondeQuestao(nomeSimulado, nomeProva, numeroQuestao, cpf, respondeQuestaoDto);
+		ResultadoQuestaoDto resultado = respondeService.salvaRespostaAluno(nomeSimulado, nomeProva, numeroQuestao, cpf, respondeQuestaoDto);
 		return new ResponseEntity<ResultadoQuestaoDto>(resultado, HttpStatus.CREATED);
 	}
 }
