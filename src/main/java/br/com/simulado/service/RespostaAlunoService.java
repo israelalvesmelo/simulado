@@ -36,9 +36,9 @@ public class RespostaAlunoService {
 			throw new IllegalArgumentException("Resposta deve ser informada");
 		}
 		
-		Simulado simulado = this.simuladoService.buscaSimuladoPeloNome(nomeSimulado);
+		Simulado simulado = this.simuladoService.buscaSimuladoPeloNome(nomeSimulado.toUpperCase());
 		Aluno aluno = alunoService.buscaAlunoPorCpfESimulado(cpf, simulado);
-		Prova prova = simulado.retornaProvaPorNome(nomeProva);
+		Prova prova = simulado.retornaProvaPorNome(nomeProva.toUpperCase());
 		Questao questao = prova.retornaQuestaoPorNumero(numeroQuestao);
 
 		RespostaAluno respostaAluno = respostaAlunoRepository.findByAlunoAndQuestao(aluno, questao)

@@ -15,8 +15,8 @@ public class ProvaService {
 	private SimuladoService simuladoService;
 
 	public GabaritoDto buscaGabaritoPelaProva(String nomeSimulado, String nomeProva) throws NotFoundException {
-		Simulado simulado = this.simuladoService.buscaSimuladoPeloNome(nomeSimulado);
-		Prova prova = simulado.retornaProvaPorNome(nomeProva);
+		Simulado simulado = this.simuladoService.buscaSimuladoPeloNome(nomeSimulado.toUpperCase());
+		Prova prova = simulado.retornaProvaPorNome(nomeProva.toUpperCase());
 		GabaritoDto gabaritoDto = new GabaritoDto(prova.getGabarito());
 		return gabaritoDto;
 	}

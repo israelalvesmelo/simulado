@@ -39,7 +39,7 @@ public class SimuladoService {
 	}
 
 	public Simulado buscaSimuladoPeloNome(String nomeSimulado) throws NotFoundException {
-		Simulado simulado = this.simuladoRepository.findByNome(nomeSimulado);
+		Simulado simulado = this.simuladoRepository.findByNome(nomeSimulado.toUpperCase());
 		if (simulado == null) {
 			throw new NotFoundException("Simulado [" + nomeSimulado + "] não foi encontrado");
 		}
@@ -47,7 +47,7 @@ public class SimuladoService {
 	}
 
 	public RankingDto calculaRanking(String nomeSimulado) throws NotFoundException {
-		Simulado simulado = this.buscaSimuladoPeloNome(nomeSimulado);
+		Simulado simulado = this.buscaSimuladoPeloNome(nomeSimulado.toUpperCase());
 		List<Aluno> alunos = this.alunoService.buscaAlunoPorSimulado(simulado);
 		List<Prova> provas = simulado.getProvas();
 		RankingDto ranking = new RankingDto();
@@ -69,7 +69,7 @@ public class SimuladoService {
 	
 	public List<AlunoSimuladoDto> buscaTodosOsAlunosPorSimulado(String nomeSimulado) throws NotFoundException{
 		List<AlunoSimuladoDto> alunosSimuladoDto = new ArrayList<>();
-		Simulado simulado = this.buscaSimuladoPeloNome(nomeSimulado);
+		Simulado simulado = this.buscaSimuladoPeloNome(nomeSimulado.toUpperCase());
 		List<Aluno> alunos = this.alunoService.buscaAlunoPorSimulado(simulado);
 		
 		for (Aluno aluno : alunos) {

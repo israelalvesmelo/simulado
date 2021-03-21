@@ -1,5 +1,5 @@
 cd ..
-call mvn clean install 
+call mvn clean install test
 echo **************************************
 echo *                                    *
 echo * Build concluido *
