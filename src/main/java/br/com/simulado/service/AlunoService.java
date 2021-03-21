@@ -9,7 +9,6 @@ import br.com.simulado.modal.Aluno;
 import br.com.simulado.modal.Simulado;
 import br.com.simulado.repository.AlunoRepository;
 import javassist.NotFoundException;
-import jdk.internal.joptsimple.internal.Strings;
 
 @Service
 public class AlunoService {

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.simulado.dto.AlunoDto;
+import br.com.simulado.dto.AlunoSimuladoDto;
 import br.com.simulado.dto.RankingDto;
 import br.com.simulado.dto.SimuladoDto;
 import br.com.simulado.modal.Aluno;
@@ -54,6 +55,7 @@ public class SimuladoService {
 		for (Aluno aluno : alunos) {
 			AlunoDto alunoDto = new AlunoDto();
 			alunoDto.setNome(aluno.getNome());
+			alunoDto.setCpf(aluno.getCpf());
 			for (Prova prova : provas) {
 				Optional<NotaProva> notaProva = this.notaProvaService.calculaNotaProva(aluno, prova);
 
@@ -63,6 +65,18 @@ public class SimuladoService {
 		}
 
 		return ranking;
+	}
+	
+	public List<AlunoSimuladoDto> buscaTodosOsAlunosPorSimulado(String nomeSimulado) throws NotFoundException{
+		List<AlunoSimuladoDto> alunosSimuladoDto = new ArrayList<>();
+		Simulado simulado = this.buscaSimuladoPeloNome(nomeSimulado);
+		List<Aluno> alunos = this.alunoService.buscaAlunoPorSimulado(simulado);
+		
+		for (Aluno aluno : alunos) {
+			alunosSimuladoDto.add(new AlunoSimuladoDto(aluno.getNome(), aluno.getCpf()));
+		}
+		
+		return alunosSimuladoDto;
 	}
 
 }

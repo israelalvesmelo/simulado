@@ -12,6 +12,7 @@ INSERT INTO `aluno` (`id`, `cpf`, `nome`) VALUES
 	(11, '54207404007', 'Lionel Melo'),
 	(12, '56361335020', 'Cristiano Souza'),
 	(13, '23480281079', 'Rogerio Luis');
+	
 
 
 INSERT INTO `simulado` (`id`, `nome`) VALUES
@@ -23,9 +24,16 @@ INSERT INTO `aluno_simulado` (`aluno_id`, `simulado_id`) VALUES
 	(1, 1),
 	(2, 1),
 	(3, 1),
+	(4, 1),
+	(5, 1),
 	(6, 2),
 	(7, 2),
-	(8, 2);
+	(8, 2),
+	(9, 1),
+	(10, 2),
+	(11, 2),
+	(12, 2),
+	(13, 1);
 
 INSERT INTO `gabarito` (`id`) VALUES
 	(1),

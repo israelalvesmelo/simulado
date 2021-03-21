@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.simulado.dto.AlunoSimuladoDto;
 import br.com.simulado.dto.RankingDto;
 import br.com.simulado.dto.SimuladoDto;
 import br.com.simulado.service.SimuladoService;
@@ -35,4 +36,13 @@ public class SimuladoController {
 		
 		return new ResponseEntity<>(ranking, HttpStatus.OK);
 	}
+	
+	@RequestMapping(path = "{simulado}/alunos", method = RequestMethod.GET)
+	public ResponseEntity<List<AlunoSimuladoDto>> buscaTodosOsAlunosPorSimulado(@PathVariable("simulado") String simulado) throws NotFoundException {
+		List<AlunoSimuladoDto> alunos = simuladoService.buscaTodosOsAlunosPorSimulado(simulado);
+		
+		return new ResponseEntity<>(alunos, HttpStatus.OK);
+	}
+	
+	
 }

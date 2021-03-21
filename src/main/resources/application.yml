@@ -14,21 +14,4 @@ spring:
   h2:
     console:
       enabled: true
-      path: /n2-console
-
-
-#spring:
-#   datasource:
-#    password: root
-#    username: root
-#    url: 'jdbc:mariadb://localhost:3306/simulado?createDatabaseIfNotExist=true'
-#    driver-class-name: org.mariadb.jdbc.Driver
-#    initialization-mode: ALWAYS
-#   jpa:
-#    generate-ddl: true
-#    show-sql: true
-#    hibernate:
-#      ddl-auto: update
-      
-
-  
+      path: /h2-console  

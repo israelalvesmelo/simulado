@@ -30,7 +30,7 @@ public class NotaProvaService {
 				prova);
 		Optional<NotaProva> notaProva = this.buscaNotaProvaPeloAlunoProva(aluno, prova);
 
-		if (notaProva.isEmpty()) {
+		if (!notaProva.isPresent()) {
 			notaProva = Optional.of(new NotaProva());
 		}
 
